@@ -66,8 +66,11 @@ int calcularNoCumpleanyos(int* n)
         for (i = 1; i < *(n + 4); i++)
             suma += DIAS_MES[i];
 
-        /* Sumamos uno porque el primer año no hubo cumpleaños */
-        suma += 1;
+        /* Sumamos uno en caso de que este año aún no haya habido cumpleaños */
+        if (deltaM < 0)
+            suma += 1;
+        else if (deltaD < 0)
+            suma += 1;
     }
     return suma;
 }
