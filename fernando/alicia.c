@@ -39,6 +39,17 @@ int main(int argc, char** argv)
     numeros = NULL;
 }
 
+/**
+    @brief Cálculo de días de no cumpleaños
+
+    Cálculo de días de no cumpleaños de forma 'inversa' podría decir. Calculo
+    todos los días entre los años para pasar después a ajustar los extremos,
+    esto es, año de nacimiento y año actual.
+
+    @param n Puntero a años leídos de stdin
+
+    @returns Número de no cumpleaños cumplidos
+*/
 int calcularNoCumpleanyos(int* n)
 {
     int i, suma, deltaD, deltaM, deltaA;
