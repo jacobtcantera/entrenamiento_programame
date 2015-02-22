@@ -4,7 +4,6 @@
 
 /* CONSTANTES */
 const int N = 6;
-const int P = 1;
 const int DIAS_MES[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 /* DECLARACIÓN FUNCIONES */
@@ -58,19 +57,21 @@ int calcularNoCumpleanyos(int* n)
         /* Todos los días de cada año */
         suma += + deltaA * 364;
 
-        /* Calculamos días sumados de más del primer año  y los quitamos */
+        /* Calculamos días sumados de más del primer año y los quitamos */
         for (i = 1; i < *(n + 1) + 1; i++)
             suma -= DIAS_MES[i];
+        /* Sumamos día de nacimiento */
+        suma += 1;
 
         /* Calculamos días nos sumados del último año y los sumamos */
         for (i = 1; i < *(n + 4); i++)
             suma += DIAS_MES[i];
 
-        /* Sumamos uno en caso de que este año aún no haya habido cumpleaños */
-        if (deltaM < 0)
-            suma += 1;
-        else if (deltaD < 0)
-            suma += 1;
+        /* Restamos uno en caso de que este año haya habido cumpleaños */
+        if (deltaM > 0)
+            suma -= 1;
+        else if (deltaM == 0 && deltaD > 0)
+            suma -= 1;
     }
     return suma;
 }
@@ -86,7 +87,7 @@ void imprimeVector(int* numeros)
 /**
     @brief Comprobacion de final de test
 
-    Comprobación de haber llegado al único caso de prueba. A este se llega
+    Comprobación de haber llegado al último caso de prueba. A este se llega
     si tenemos una línea con seis ceros.
 
     @param valores vector con valores de un caso concreto
