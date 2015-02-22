@@ -17,28 +17,26 @@ long long int mergeSort(int* k, int n)
         return 0;
     int m = n / 2;
     int r = n - m;
-    mergeSort(k, m);
-    mergeSort(k + m, r);
-    merge(k, n, m);
 
-    return 0;
+    return mergeSort(k, m) + mergeSort(k + m, r) + merge(k, n, m);
 }
 
 long long int merge(int* a, int n, int m)
 {
-    int i, j, k;
+    int i, j, k, temp;
     long long int desajuste = 0;
     int *aux = malloc(n * sizeof (int));
     for (i = 0, j = m, k = 0; k < n; k++)
     {
         if (j == n)
+        {
             aux[k] = a[i++];
+        }
         else if (i == m)
             aux[k] = a[j++];
         else if (a[j] < a[i])
         {
-            desajuste += j - i;
-            printf("%lld\n", n - m);
+            desajuste +=  n - j;
             aux[k] = a[j++];
         } else
             aux[k] = a[i++];
@@ -57,6 +55,7 @@ int main(int argc, char** argv)
 {
     int i, n;
     int* valores;
+    long long int desajuste;
 
     while (1)
     {
@@ -76,7 +75,9 @@ int main(int argc, char** argv)
             scanf("%d", &valores[i]);
         // printf("%lld\n", calculoDesajuste(valores, &n));
         // printf("%lld\n", bubbleSort(valores, &n));
-        printf("%lld\n", mergeSort(valores, n));
+
+        desajuste = mergeSort(valores, n);
+        printf("%lld\n", desajuste);
         // imprimeVector(valores, &n);
     }
 
