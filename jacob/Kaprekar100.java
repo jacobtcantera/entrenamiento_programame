@@ -5,14 +5,14 @@ public class Kaprekar100 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int c = 0;
-        int entr = Integer.parseInt(sc.nextLine());
-        int l;
-        int[] may, men;
+        int c = 0;//contador de número de entradas        
+        int cont = 0;//contador de iteraciones hasta llegar a Kaprekar        
+        int entr = Integer.parseInt(sc.nextLine());//número de entradas que se introducirán
+        int n;//diferencia ente los dos números reordenados
+        
         String num;
-        String[] n;
         int[] nume = new int[4];
-        int cont = 0;
+        
         while (c < entr) {
 
             num = sc.nextLine();
@@ -27,21 +27,19 @@ public class Kaprekar100 {
                 ordenaMenAMay(ordenaMayAMen(nume));
                 int menor = Integer.parseInt(nume[0] + "" + nume[1] + "" + nume[2] + "" + nume[3]);
 
-                l = mayor - menor;
-                if (l == 0) {
+                n = mayor - menor;
+                if (n == 0) {//si es repdigit, break y que de 8 (a lo bruto)
                     cont = 8;
                     break;
                 }
-
-                for (int i = 0; i < l; i++) {//añado ceros a la izquierda
-                    num = String.format("%04d", l);
+                for (int i = 0; i < n; i++) {//añado ceros a la izquierda
+                    num = String.format("%04d", n);
                 }
-            
+                //reasigno array con el nuevo número
                 nume[0] = Integer.parseInt(num.substring(0, 1));
                 nume[1] = Integer.parseInt(num.substring(1, 2));
                 nume[2] = Integer.parseInt(num.substring(2, 3));
                 nume[3] = Integer.parseInt(num.substring(3, 4));
-
                 cont++;
             }
             c++;
@@ -50,6 +48,7 @@ public class Kaprekar100 {
         }
     }
 
+    //métodos ordenacion (son iguales salvo la comparación n[i]<=>n[j], ¿abstraer?)
     static int[] ordenaMayAMen(int[] n) {
         int aux;
         for (int i = 0; i < n.length; i++) {
