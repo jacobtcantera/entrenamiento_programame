@@ -9,10 +9,10 @@ public class Kaprekar100 {
         int cont = 0;//contador de iteraciones hasta llegar a Kaprekar        
         int entr = Integer.parseInt(sc.nextLine());//número de entradas que se introducirán
         int n;//diferencia ente los dos números reordenados
-        
+
         String num;
         int[] nume = new int[4];
-        
+
         while (c < entr) {
 
             num = sc.nextLine();
@@ -24,7 +24,7 @@ public class Kaprekar100 {
 
                 ordenaMayAMen(nume);
                 int mayor = Integer.parseInt(nume[0] + "" + nume[1] + "" + nume[2] + "" + nume[3]);
-                ordenaMenAMay(ordenaMayAMen(nume));
+                ordenaMenAMay(nume);
                 int menor = Integer.parseInt(nume[0] + "" + nume[1] + "" + nume[2] + "" + nume[3]);
 
                 n = mayor - menor;
@@ -48,7 +48,7 @@ public class Kaprekar100 {
         }
     }
 
-    //métodos ordenacion (son iguales salvo la comparación n[i]<=>n[j], ¿abstraer?)
+    //métodos ordenación (son iguales salvo la comparación n[i]<=>n[j], ¿abstraer?)
     static int[] ordenaMayAMen(int[] n) {
         int aux;
         for (int i = 0; i < n.length; i++) {
